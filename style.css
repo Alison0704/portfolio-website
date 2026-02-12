@@ -1,0 +1,223 @@
+:root {
+  /* The Foundation */
+  --bg: #211c84;
+  --text: white;
+  /* The Accents */
+  --primary: #4d55cc;
+  --secondary: #4d55cc;
+}
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+button {
+  background-color: var(--secondary);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+h1,
+h6,
+p {
+  color: var(--text);
+}
+h6 {
+  margin-left: 10px;
+  color: var(--text);
+}
+section {
+  height: 85vh;
+  background-color: var(--primary);
+  border-bottom: 4px solid var(--bg);
+}
+button {
+  cursor: pointer;
+}
+#contact {
+  background-color: var(--text);
+  border: 2px solid var(--primary);
+  color: var(--bg);
+  border-radius: 25px;
+  padding: 10px;
+  margin: 10px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Style the navbar */
+#navbar {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  background-color: var(--primary);
+  height: 100vh;
+  z-index: 10;
+}
+#landing {
+  background-color: var(--primary);
+  color: var(--bg);
+  text-align: center;
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+#message {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: left;
+  justify-content: start;
+}
+#logo {
+  width: 25rem;
+  height: 25rem;
+  border-radius: 50%;
+  border: 5px solid var(--bg);
+}
+#backgroundVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: var(--primary);
+  color: var(--text);
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+  position: relative;
+  z-index: 2;
+}
+
+.tablink:hover {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: var(--text);
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+/* About Section */
+.tabcontent#About {
+  position: relative;
+  background-color: var(--primary);
+  isolation: isolate;
+}
+.tabcontent#About::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(Mauritius.jpg) no-repeat center center;
+  background-attachment: fixed;
+  background-size: cover;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}
+.tabcontent#About > * {
+  position: relative;
+  z-index: 1;
+}
+/* Projects Section */
+#Projects {
+  background-color: var(--primary);
+}
+.tabcontent#Projects {
+  position: relative;
+  background-color: var(--primary);
+  isolation: isolate;
+}
+.tabcontent#Projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(Chip.jpg) no-repeat center center;
+  background-attachment: fixed;
+  background-size: cover;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+.tabcontent#Projects > * {
+  position: relative;
+  z-index: 1;
+}
+/* Work Experiences Section */
+#WorkExperiences {
+  background-color: var(--primary);
+}
+.tabcontent#WorkExperiences {
+  position: relative;
+  background-color: var(--primary);
+  isolation: isolate;
+}
+.tabcontent#WorkExperiences::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(Work.jpg) no-repeat center center;
+  background-attachment: fixed;
+  background-size: cover;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+.tabcontent#WorkExperiences > * {
+  position: relative;
+  z-index: 1;
+}
+/* Academic Experiences Section */
+#AcademicExperiences {
+  background-color: var(--primary);
+}
+.tabcontent#AcademicExperiences {
+  position: relative;
+  background-color: var(--primary);
+  isolation: isolate;
+}
+.tabcontent#AcademicExperiences::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(Library.jpg) no-repeat center center;
+  background-attachment: fixed;
+  background-size: cover;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+.tabcontent#AcademicExperiences > * {
+  position: relative;
+  z-index: 1;
+}
