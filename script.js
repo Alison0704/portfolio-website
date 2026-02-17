@@ -20,4 +20,13 @@ function openPage(pageName, elmnt, color) {
 }
 
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+document.addEventListener("DOMContentLoaded", function () {
+  const loader = document.getElementById("loader");
+  const content = document.getElementById("content");
+
+  function revealSite() {
+    loader.classList.add("hidden");
+    content.classList.add("visible");
+  }
+  setTimeout(revealSite, 1500);
+});
