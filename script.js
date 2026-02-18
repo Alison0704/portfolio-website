@@ -23,10 +23,57 @@ function openPage(pageName, elmnt, color) {
 document.addEventListener("DOMContentLoaded", function () {
   const loader = document.getElementById("loader");
   const content = document.getElementById("content");
+  const projectSearch = document.getElementById("projectSearch");
+  const projectCards = document.querySelectorAll("#projects .project-card");
+  const projectFilterButtons = document.querySelectorAll(".project-filter");
+  let activeTagFilter = "";
 
   function revealSite() {
     loader.classList.add("hidden");
     content.classList.add("visible");
   }
+
+  function applyProjectFilters() {
+    const searchValue = projectSearch
+      ? projectSearch.value.trim().toLowerCase()
+      : "";
+
+    projectCards.forEach(function (card) {
+      const cardContainer = card.closest(".col-md-6");
+      if (!cardContainer) {
+        return;
+      }
+
+      const cardText = card.textContent.toLowerCase();
+      const cardTag = cardContainer.dataset.projectTag || "";
+      const matchesSearch = cardText.includes(searchValue);
+      const matchesTag = !activeTagFilter || cardTag === activeTagFilter;
+
+      cardContainer.style.display = matchesSearch && matchesTag ? "" : "none";
+    });
+  }
+
+  if (projectSearch && projectCards.length > 0) {
+    projectSearch.addEventListener("input", applyProjectFilters);
+  }
+
+  if (projectFilterButtons.length > 0 && projectCards.length > 0) {
+    projectFilterButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const selectedTag = button.dataset.filter || "";
+
+        activeTagFilter = activeTagFilter === selectedTag ? "" : selectedTag;
+
+        projectFilterButtons.forEach(function (filterButton) {
+          const isActive = filterButton.dataset.filter === activeTagFilter;
+          filterButton.classList.toggle("btn-primary", isActive);
+          filterButton.classList.toggle("btn-outline-primary", !isActive);
+        });
+
+        applyProjectFilters();
+      });
+    });
+  }
+
   setTimeout(revealSite, 1500);
 });

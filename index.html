@@ -8,6 +8,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body data-bs-spy="scroll" data-bs-target="#mainNav">
@@ -25,12 +29,12 @@
     </div>
 
     <div id="content" class="fade-in"></div>
-    <nav id="mainNav" class="navbar navbar-expand-lg fixed-top shadow">
+    <nav id="mainNav" class="navbar navbar-expand-lg fixed-top shadow g-4">
       <div class="container">
         <a class="navbar-brand fw-bold" href="#home" style="color: white"
           >AliEmi Portfolio Website</a
         >
-        <div class="navbar-nav ms-auto">
+        <div class="navbar-nav ms-auto gap-3">
           <a class="nav-link active" href="#home">Home</a>
           <a class="nav-link" href="#about">About</a>
           <a class="nav-link" href="#projects">Projects</a>
@@ -47,26 +51,36 @@
     </nav>
 
     <header id="home" class="vh-100 d-flex align-items-center">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        id="background-video"
+        class="position-absolute w-100 h-100 object-fit-cover"
+      >
+        <source src="Background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div class="container text-center text-md-start">
-        <h3>#include &lt;iostream&gt;</h3>
+        <h3 style="color: var(--ocean-blue)">#include &lt;iostream&gt;</h3>
         <h3 class="display-3 fw-bold" style="color: var(--ocean-blue)">
           cout &lt;&lt;
-          <span style="color: var(--steel-blue)"
-            >"Hello World! I'm Alison"</span
-          >
-          &lt;&lt endl;
+          <span style="color: var(--steel-blue)">"Hello World! I'm Alison"</span
+          >;
         </h3>
-        <p class="lead mb-4" style="color: var(--steel-blue)">
+        <p class="lead mb-4" style="color: var(--sky-blue)">
           Electrical and Computer Engineering Graduate : May 2026
         </p>
         <a
-          href="/resume/Alison_Emilien_Resume_Hardware.pdf"
+          href="./resume/Alison_Emilien_Resume_Hardware.pdf"
           class="btn btn-primary btn-lg px-4"
           target="_blank"
           >Hardware Resume</a
         >
         <a
-          href="/resume/Alison_Emilien_Resume_Software.pdf"
+          href="./resume/Alison_Emilien_Resume_Software.pdf"
           class="btn btn-primary btn-lg px-4 ms-3"
           target="_blank"
           >Software Resume</a
@@ -75,45 +89,176 @@
     </header>
 
     <div class="container">
-      <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="row">
-          <div class="col-md-8">
-            <p>
-              I am a junior Computer Engineering student with a passion for
-              bridging the gap between hardware architecture and software
-              efficiency.
+      <section id="about" class="vh-90 d-flex flex-column">
+        <h2 class="section-title">Professional Profile</h2>
+        <div class="row g-4 justify-content-between">
+          <div class="col-md-6 align-content-center">
+            <p class="lead" style="color: var(--ocean-blue)">
+              Full-Stack Solutions from Silicon to Software
             </p>
-            <div>
-              <span class="badge badge-tech">C++</span>
-              <span class="badge badge-tech">Verilog</span>
-              <span class="badge badge-tech">Python</span>
-              <span class="badge badge-tech">Assembly</span>
-            </div>
+            <p>
+              With a dual-degree background from the University of Ottawa, I
+              bring a unique perspective to embedded systems, combining the
+              rigorous circuit analysis of Electrical Engineering with the
+              algorithmic efficiency of Computer Science.
+            </p>
+            <p class="lead" style="color: var(--ocean-blue)">
+              Creative Direction & Visual Arts
+            </p>
+            <p>
+              A dedicated focus on visual storytelling, character development,
+              and world-building. I specialize in creating cohesive designs that
+              capture narrative depth and aesthetic appeal.
+            </p>
           </div>
+          <img
+            src="./images/profile.png"
+            alt="Profile Picture"
+            class="img-fluid rounded"
+            style="max-width: 20rem"
+          />
         </div>
       </section>
-      <section id="projects">
-        <h2 class="section-title">Projects</h2>
+
+      <section id="projects" class="vh-90 d-flex flex-column">
+        <h2 class="section-title">Technical Projects</h2>
+
+        <div class="mb-4">
+          <div class="input-group">
+            <span class="input-group-text" style="color: var(--ocean-blue)">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+            <input
+              type="search"
+              id="projectSearch"
+              class="form-control"
+              placeholder="Search projects..."
+              aria-label="Search technical projects"
+              style="
+                color: var(--ocean-blue);
+                border-radius: 0 0.25rem 0.25rem 0;
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+              "
+            />
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mb-4" id="projectTagFilters">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary project-filter"
+            data-filter="hardware"
+          >
+            Hardware
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary project-filter"
+            data-filter="software"
+          >
+            Software
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary project-filter"
+            data-filter="character-designs"
+          >
+            Character Designs
+          </button>
+        </div>
+
         <div class="row g-4">
-          <div class="col-md-6">
-            <div class="card h-100">
-              <div class="card-body">
-                <h5 class="card-title" style="color: var(--ocean-blue)">
+          <div class="col-md-6" data-project-tag="hardware">
+            <div class="card h-100 border-0 shadow-sm project-card">
+              <div class="card-body d-flex flex-column p-4">
+                <div class="mb-2">
+                  <span
+                    class="badge bg-light text-primary border border-primary"
+                    >Hardware</span
+                  >
+                </div>
+                <h5 class="card-title fw-bold" style="color: var(--ocean-blue)">
                   8-Bit ALU Design
                 </h5>
-                <p class="card-text">
+                <p class="card-text text-muted flex-grow-1">
                   Designed and simulated a full 8-bit Arithmetic Logic Unit
-                  using Logisim.
+                  using Logisim. Implemented addition, subtraction, and bitwise
+                  logic operations.
                 </p>
-                <a href="#" class="btn btn-sm btn-outline-dark">Repo Link</a>
+                <div class="mt-3">
+                  <a href="#" class="btn btn-sm btn-outline-dark px-3"
+                    >View on GitHub</a
+                  >
+                  <a
+                    href="#"
+                    class="btn btn-sm btn-link text-decoration-none ms-2"
+                    >Schematics →</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-project-tag="software">
+            <div class="card h-100 border-0 shadow-sm project-card">
+              <div class="card-body d-flex flex-column p-4">
+                <div class="mb-2">
+                  <span
+                    class="badge bg-light text-primary border border-primary"
+                    >Software</span
+                  >
+                </div>
+                <h5 class="card-title fw-bold" style="color: var(--ocean-blue)">
+                  Real-Time OS Scheduler
+                </h5>
+                <p class="card-text text-muted flex-grow-1">
+                  Developed a priority-based task scheduler for an ARM Cortex-M4
+                  microcontroller. Reduced context-switching latency by 15%.
+                </p>
+                <div class="mt-3">
+                  <a href="#" class="btn btn-sm btn-outline-dark px-3"
+                    >Repo Link</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-project-tag="character-designs">
+            <div class="card h-100 border-0 shadow-sm project-card">
+              <div class="card-body d-flex flex-column p-4">
+                <div class="mb-2">
+                  <span
+                    class="badge bg-light text-primary border border-primary"
+                    >Character Designs</span
+                  >
+                </div>
+                <h5 class="card-title fw-bold" style="color: var(--ocean-blue)">
+                  Character Design Portfolio
+                </h5>
+                <p class="card-text text-muted flex-grow-1">
+                  Developed a portfolio of character designs for a variety of
+                  media projects. Created concept art and character sheets music
+                  assets.
+                </p>
+                <div class="mt-3">
+                  <a
+                    href="./characterDesigns/project-detail.html"
+                    target="_blank"
+                    class="btn btn-sm btn-link text-decoration-none ms-2"
+                    >Go to Characters Page →</a
+                  >
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- WORK is COMPLETE -->
+      <hr class="my-4" />
+
+      <!-- WORK -->
       <section id="work">
         <h2 class="section-title">Work Experience</h2>
         <div class="border-start border-3 ps-4">
@@ -155,117 +300,142 @@
         </div>
       </section>
 
+      <hr class="my-4" />
+
+      <!-- ACADEMICS -->
       <section id="academic">
         <h2 class="section-title">Academic Experience</h2>
-        <div class="card shadow-sm mb-3 pt-2">
+        <div class="card shadow-sm border-0 bg-light py-2 my-2">
           <div class="card-body">
-            <h5>
-              BASc Electrical Engineering and BSc Computing Technology -
-              University of Ottawa
+            <h5 class="mb-3" style="color: var(--ocean-blue)">
+              B.A.Sc. Electrical Engineering & B.Sc. Computing Technology
             </h5>
-            <ul class="list-inline">
-              <li class="list-inline-item">• Microprocessors</li>
-              <li class="list-inline-item">• Digital Logic</li>
-              <li class="list-inline-item">• Data Structures</li>
-            </ul>
-            <ul class="list-unstyled">
-              <li>
-                <span
-                  class="badge"
-                  style="background-color: var(--steel-blue); color: white"
-                  >CEG 3136</span
-                >
-                Computer Architecture II (Advanced Hardware Design)
-              </li>
-              <li>
-                <span
-                  class="badge"
-                  style="background-color: var(--steel-blue); color: white"
-                  >CSI 2110</span
-                >
-                Data Structures and Algorithms (Software Optimization)
-              </li>
-              <li>
-                <span
-                  class="badge"
-                  style="background-color: var(--steel-blue); color: white"
-                  >CSI 3131</span
-                >
-                Operating Systems (Hardware-Software Interface)
-              </li>
-              <li>
-                <span
-                  class="badge"
-                  style="background-color: var(--steel-blue); color: white"
-                  >ELG 2136</span
-                >
-                Electronics I (Circuit Design & Components)
-              </li>
-              <li>
-                <span
-                  class="badge"
-                  style="background-color: var(--steel-blue); color: white"
-                  >CSI 2372</span
-                >
-                Advanced Programming Concepts with C++ (Performance Coding)
-              </li>
-              <li>
-                <span
-                  class="badge"
-                  style="background-color: var(--steel-blue); color: white"
-                  >ELG 3125</span
-                >
-                Signal and System Analysis (Digital Signal Processing
-                Foundations)
-              </li>
-              <li>
-                <span
-                  class="badge"
-                  style="background-color: var(--steel-blue); color: white"
-                  >SEG 2105</span
-                >
-                Introduction to Software Engineering (Systems Design)
-              </li>
-            </ul>
+            <div class="d-flex flex-wrap gap-2">
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Computer Architecture I, II</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Data Structures & Algorithms</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Operating Systems</span
+              >
+
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Advanced C++</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Software Engineering</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Digital Signal Processing</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Electronics I, II, III</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Microwave Circuits</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >VLSI Design</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Modern Control Engineering</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Computer Control in Robotics</span
+              >
+            </div>
           </div>
         </div>
-        <div class="card shadow-sm mb-3 pt-2">
+        <div class="card shadow-sm border-0 bg-light py-2 my-2">
           <div class="card-body">
-            <h5>
-              Cambridge International AS & A Levels - GMD Atchia State College -
-              Mauritius
+            <h5 class="mb-3" style="color: var(--ocean-blue)">
+              GMD Atchia State College, Mauritius | A and AS Level Cambridge
+              International Examinations
             </h5>
-            <ul class="list-unstyled">
-              <li>
-                <span
-                  class="badge"
-                  style="background-color: var(--steel-blue); color: white"
-                  >CSI 3131</span
-                >
-                Operating Systems
-              </li>
-              <li class="list-inline-item">• Mathematics</li>
-              <li class="list-inline-item">• Physics</li>
-              <li class="list-inline-item">• Computer Science</li>
-              <li class="list-inline-item">• Art and Design</li>
-            </ul>
+            <div class="d-flex flex-wrap gap-2">
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Computer Science</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Physics</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Mathematics</span
+              >
+              <span
+                class="badge rounded-pill p-2 px-3"
+                style="background-color: var(--steel-blue)"
+                >Art and Design</span
+              >
+            </div>
           </div>
         </div>
       </section>
     </div>
+
+    <footer
+      class="text-center py-4"
+      style="color: var(--sky-blue); background-color: var(--deep-navy)"
+    >
+      <div class="d-flex justify-content-center gap-3 mb-2">
+        <a
+          href="https://www.instagram.com/sketchesbyannaelle/"
+          target="_blank"
+          aria-label="Instagram"
+          rel="noopener noreferrer"
+          style="color: var(--sky-blue)"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/alison-emilien/"
+          target="_blank"
+          aria-label="LinkedIn"
+          rel="noopener noreferrer"
+          style="color: var(--sky-blue)"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+        <a
+          href="mailto:aemil072@uottawa.ca"
+          target="_blank"
+          aria-label="Email"
+          style="color: var(--sky-blue)"
+          ><i class="fa-solid fa-envelope"></i
+        ></a>
+      </div>
+      <div>&copy; 2026 Alison Emilien. All rights reserved.</div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
-    <script
-      async
-      src="https://w4s4vl755wc6djff6tsi3btq.agents.do-ai.run/static/chatbot/widget.js"
-      data-agent-id="9a3cfd0a-088c-11f1-b074-4e013e2ddde4"
-      data-chatbot-id="JNBBYSM9VGOSbEbZhdKGCOY8JPYLUDzi"
-      data-name="4N0M4LY Chatbot"
-      data-primary-color="#031B4E"
-      data-secondary-color="#E5E8ED"
-      data-button-background-color="#0061EB"
-      data-starting-message="Hi there! I'm 4N0M4LY, your Hardware assistant. Knowledge Base Loaded (UVM 1.2, ISP Pipeline, DSP). How can I assist you today?"
-      data-logo="/static/chatbot/icons/default-agent.svg"
-    ></script>
   </body>
 </html>
