@@ -20,11 +20,13 @@ function openPage(pageName, elmnt, color) {
 }
 
 // Get the element with id="defaultOpen" and click on it
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
+  await includeHTML(); // Wait for all HTML to be included first
+
   const loader = document.getElementById("loader");
   const content = document.getElementById("content");
   const projectSearch = document.getElementById("projectSearch");
-  const projectCards = document.querySelectorAll("#projects .project-card");
+  const projectCards = document.querySelectorAll(".project-card");
   const projectFilterButtons = document.querySelectorAll(".project-filter");
   let activeTagFilter = "";
 
@@ -78,8 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(revealSite, 1500);
 });
 
-async function includeHTML() {
-  const elements = document.querySelectorAll("[data-include]");
+async function includeHTML(container = document) {
+  const elements = container.querySelectorAll("[data-include]");
   for (const el of elements) {
     const file = el.getAttribute("data-include");
     try {
@@ -87,12 +89,10 @@ async function includeHTML() {
       if (response.ok) {
         el.innerHTML = await response.text();
         el.removeAttribute("data-include"); // Clean up
+        await includeHTML(el); // Process nested includes
       }
     } catch (err) {
       console.error(`Error loading ${file}:`, err);
     }
   }
 }
-
-// Run it when the DOM is ready
-document.addEventListener("DOMContentLoaded", includeHTML);
