@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   let activeTagFilter = "";
 
   function revealSite() {
-    loader.classList.add("hidden");
-    content.classList.add("visible");
+    if (loader) loader.classList.add("hidden");
+    if (content) content.classList.add("visible");
   }
 
   function applyProjectFilters() {
@@ -47,9 +47,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
 
       const cardText = card.textContent.toLowerCase();
-      const cardTag = cardContainer.dataset.projectTag || "";
+      const projectCardContainer = card.closest(".project-card-container");
+      const cardTag = projectCardContainer
+        ? (projectCardContainer.dataset.projectTag || "").toLowerCase()
+        : "";
       const matchesSearch = cardText.includes(searchValue);
-      const matchesTag = !activeTagFilter || cardTag === activeTagFilter;
+      const matchesTag =
+        !activeTagFilter || cardTag === activeTagFilter.toLowerCase();
 
       cardContainer.style.display = matchesSearch && matchesTag ? "" : "none";
     });
