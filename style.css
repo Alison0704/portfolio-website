@@ -9,6 +9,10 @@ body {
   background-color: #f8f9fa;
   color: var(--deep-navy);
 }
+ul {
+  padding-left: 0;
+  font-size: 0.8rem;
+}
 
 /* Home Section */
 #home {
