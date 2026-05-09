@@ -65,7 +65,11 @@ export default function Navbar() {
                   className={`nav-link ${
                     activeSection === item.id ? "active-section" : ""
                   }`}
-                  href={`#${item.id}`}
+                  href={
+                    item.id === "contact"
+                      ? "mailto:aemil072@uottawa.ca"
+                      : `#${item.id}`
+                  }
                 >
                   {item.label}
                 </a>
