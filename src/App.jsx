@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ScrollSpy } from "bootstrap";
 
 import Loader from "./components/Loader";
@@ -36,8 +37,15 @@ export default function App() {
 
       <div className="background-overlay"></div>
 
-      <div className="app-content">
-        {loading && <Loader />}
+      <motion.div
+        className="app-content"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.45 }}
+      >
+        <AnimatePresence mode="wait">
+          {loading && <Loader key="loader" />}
+        </AnimatePresence>
 
         <Navbar />
 
@@ -46,10 +54,6 @@ export default function App() {
         </header>
 
         <main className="container">
-          <section id="about" className="vh-90 d-flex flex-column">
-            <About />
-          </section>
-
           <hr className="my-4" />
 
           <section id="projects" className="vh-90 d-flex flex-column">
@@ -61,10 +65,14 @@ export default function App() {
           <section id="experience" className="vh-90 d-flex flex-column">
             <Experience />
           </section>
+
+          <section id="about" className="vh-90 d-flex flex-column">
+            <About />
+          </section>
         </main>
 
         <Footer />
-      </div>
+      </motion.div>
     </>
   );
 }

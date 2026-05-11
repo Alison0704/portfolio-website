@@ -6,6 +6,6 @@ export default defineConfig({
   base: "/",
   build: {
     sourcemap: false,
-    minify: "esbuild",
+    minify: "oxc",
   },
 });
