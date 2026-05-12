@@ -1,41 +1,82 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { useIsSmallScreen } from "../hooks/useIsSmallScreen";
 
 export default function Hero() {
+  const isSmall = useIsSmallScreen();
+
+  const containerAnimation = isSmall
+    ? { initial: { opacity: 1 } }
+    : {
+        initial: { opacity: 0, x: -50 },
+        animate: { opacity: 1, x: 0 },
+        exit: { opacity: 0, x: -50 },
+        transition: { duration: 0.8 },
+      };
+
+  const kickerAnimation = isSmall
+    ? { initial: { opacity: 1 } }
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        transition: { delay: 0.2, duration: 0.6 },
+      };
+
+  const titleAnimation = isSmall
+    ? { initial: { opacity: 1 } }
+    : {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { delay: 0.3, duration: 0.8 },
+      };
+
+  const leadAnimation = isSmall
+    ? { initial: { opacity: 1 } }
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        transition: { delay: 0.4, duration: 0.6 },
+      };
+
+  const buttonsAnimation = isSmall
+    ? { initial: { opacity: 1 } }
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        transition: { delay: 0.5, duration: 0.6 },
+      };
+
+  const logoContainerAnimation = isSmall
+    ? { initial: { opacity: 1 } }
+    : {
+        initial: { opacity: 0, x: 50 },
+        animate: { opacity: 1, x: 0 },
+        exit: { opacity: 0, x: 50 },
+        transition: { duration: 0.8 },
+      };
+
+  const hoverScale = isSmall
+    ? {}
+    : { whileHover: { scale: 1.05 }, whileTap: { scale: 0.95 } };
+  const logoAnimation = isSmall
+    ? {}
+    : {
+        animate: { y: [0, -10, 0] },
+        transition: { repeat: Infinity, duration: 3 },
+      };
   return (
     <AnimatePresence>
       <div className="container hero-content">
         <div className="row align-items-center justify-content-between g-5">
-          <motion.div
-            className="col-lg-7"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.p
-              className="section-kicker"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              My Online Portfolio
+          <motion.div className="col-lg-7" {...containerAnimation}>
+            <motion.p className="section-kicker" {...kickerAnimation}>
+              Online Portfolio
             </motion.p>
 
-            <motion.h1
-              className="display-3 fw-bold"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
+            <motion.h1 className="display-3 fw-bold" {...titleAnimation}>
               Hi, I&apos;m <span className="text-sky">AliEmi</span>
             </motion.h1>
 
-            <motion.p
-              className="lead mt-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
+            <motion.p className="lead mt-3" {...leadAnimation}>
               BASc Electrical Engineering and BSc Computing Technology Graduate
               Student focused on ASIC/FPGA verification, RTL design, and
               hardware and software systems.
@@ -43,39 +84,44 @@ export default function Hero() {
 
             <motion.div
               className="d-flex flex-wrap gap-3 mt-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              {...buttonsAnimation}
             >
               <motion.a
-                href="/resume/Alison_Emilien_Resume_Hardware.pdf"
+                href="https://github.com/Alison0704"
                 className="btn btn-outline-sky"
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                {...hoverScale}
               >
-                <i className="fa-solid fa-file-pdf" />
-                My Resume
+                <i className="fa-brands fa-github" />
+                GitHub
               </motion.a>
               <motion.a
                 href="https://www.linkedin.com/in/alison-emilien/"
                 className="btn btn-outline-sky"
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                {...hoverScale}
               >
                 <i className="fa-brands fa-linkedin" />
-                My LinkedIn
+                LinkedIn
+              </motion.a>
+              <motion.a
+                href="/resume/Alison_Emilien_Resume_Hardware.pdf"
+                className="btn btn-outline-sky"
+                target="_blank"
+                rel="noreferrer"
+                {...hoverScale}
+              >
+                <i className="fa-solid fa-file-pdf" />
+                Resume
               </motion.a>
               <motion.a
                 href="mailto:aemil072@uottawa.ca"
                 className="btn btn-sky"
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                {...hoverScale}
               >
                 <i className="fa-solid fa-envelope" />
                 Email Me
@@ -85,17 +131,13 @@ export default function Hero() {
 
           <motion.div
             className="col-lg-5 d-flex align-items-center justify-content-center"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
-            transition={{ duration: 0.8 }}
+            {...logoContainerAnimation}
           >
             <motion.img
               src="/Logo.png"
               alt="AliEmi logo"
               className="profile-image"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 3 }}
+              {...logoAnimation}
             />
           </motion.div>
         </div>

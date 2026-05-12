@@ -1,114 +1,17 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
+import { useIsSmallScreen } from "../hooks/useIsSmallScreen";
 
 const projects = [
-  {
-    id: "ai-rtl",
-    title: "AI RTL Assistant",
-    type: "Web Tool",
-    icon: "fa-wave-square",
-    status: "Portable",
-    description:
-      "A browser-based RTL assistant for Verilog analysis, simulation flow support, and waveform-focused debugging.",
-    stack: ["React", "Python", "Icarus Verilog", "cocotb"],
-    github: "https://github.com/yourusername/ai-rtl-assistant",
-    live: "/projects/rtl-assistant",
-  },
   {
     id: "jime",
     title: "Jim-E Hosting Robot",
     type: "Robotics",
-    icon: "fa-robot",
-    status: "Repo",
     description:
       "An autonomous indoor hosting robot using ROS 2, Raspberry Pi, ESP32 control, vision, and path planning.",
     stack: ["ROS 2", "Python", "OpenCV", "ESP32"],
-    github: "https://github.com/yourusername/jime-robot",
-    live: "",
-  },
-  {
-    id: "dff",
-    title: "Custom D Flip-Flop",
-    type: "ASIC / EDA",
-    icon: "fa-microchip",
-    status: "Repo",
-    description:
-      "A transistor-level DFF designed in Sky130A with schematic simulation, layout, DRC, LVS, and extraction.",
-    stack: ["Xschem", "Ngspice", "Magic", "Sky130A"],
-    github: "https://github.com/yourusername/sky130-dff",
-    live: "",
-  },
-  {
-    id: "ml-lab",
-    title: "ML From Scratch Lab",
-    type: "Learning Lab",
-    icon: "fa-brain",
-    status: "Portable",
-    description:
-      "Small experiments building neural networks, optimizers, and training loops from scratch to understand the math.",
-    stack: ["Python", "NumPy", "ML"],
-    github: "https://github.com/yourusername/ml-from-scratch",
-    live: "/projects/ml-lab",
-  },
-  {
-    id: "fpga-pong",
-    title: "FPGA Pong Console",
-    type: "Digital Design",
-    icon: "fa-gamepad",
-    status: "Repo",
-    description:
-      "A VGA-based Pong implementation in Verilog with input debouncing, timing control, and score tracking.",
-    stack: ["Verilog", "FPGA", "VGA", "SystemVerilog"],
-    github: "https://github.com/yourusername/fpga-pong-console",
-    live: "",
-  },
-  {
-    id: "sensor-dashboard",
-    title: "Sensor Telemetry Dashboard",
-    type: "Web App",
-    icon: "fa-chart-line",
-    status: "Portable",
-    description:
-      "A live dashboard for plotting environmental sensor data with filters, alerts, and time-series trends.",
-    stack: ["React", "TypeScript", "Charts", "REST API"],
-    github: "https://github.com/yourusername/sensor-dashboard",
-    live: "/projects/sensor-dashboard",
-  },
-  {
-    id: "uart-console",
-    title: "UART Debug Console",
-    type: "Embedded Tool",
-    icon: "fa-terminal",
-    status: "Repo",
-    description:
-      "A lightweight serial console for embedded bring-up, framing analysis, and command-driven board testing.",
-    stack: ["Python", "PySerial", "Tkinter", "UART"],
-    github: "https://github.com/yourusername/uart-debug-console",
-    live: "",
-  },
-  {
-    id: "robot-docking",
-    title: "Autonomous Docking Stack",
-    type: "Robotics",
-    icon: "fa-location-crosshairs",
-    status: "Repo",
-    description:
-      "A docking pipeline for a mobile robot using fiducial markers, pose estimation, and final approach control.",
-    stack: ["ROS 2", "OpenCV", "SLAM", "Python"],
-    github: "https://github.com/yourusername/autonomous-docking-stack",
-    live: "",
-  },
-  {
-    id: "signal-lab",
-    title: "Signal Integrity Lab",
-    type: "Simulation",
-    icon: "fa-wave-square",
-    status: "Portable",
-    description:
-      "A collection of experiments exploring rise time, ringing, impedance matching, and interconnect behavior.",
-    stack: ["Python", "SPICE", "NumPy", "EDA"],
-    github: "https://github.com/yourusername/signal-integrity-lab",
-    live: "/projects/signal-lab",
+    github: "https://github.com/Alison0704/Capstone-JimE",
+    live: "https://alison0704.github.io/Capstone-JimE-Interface/",
   },
 ];
 
@@ -117,6 +20,7 @@ const projectListIcon = "fa-folder-open";
 export default function Projects() {
   const [query, setQuery] = useState("");
   const [activeId, setActiveId] = useState(projects[0].id);
+  const isSmall = useIsSmallScreen();
 
   const filteredProjects = useMemo(() => {
     const search = query.trim().toLowerCase();
@@ -155,19 +59,31 @@ export default function Projects() {
 
       <div className="container projects-content">
         <div className="projects-header">
-          <motion.p
-            className="section-kicker"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+          <motion.h2
+            initial={isSmall ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            whileInView={isSmall ? {} : { opacity: 1, y: 0 }}
+            transition={isSmall ? {} : { duration: 0.6 }}
+            viewport={isSmall ? {} : { once: true }}
           >
-            Projects
-          </motion.p>{" "}
-          <h2>My Projects List</h2>
-          <p>Search by project, tool, stack, or domain.</p>
+            My Projects
+          </motion.h2>
+          <motion.p
+            initial={isSmall ? { opacity: 1 } : { opacity: 0 }}
+            whileInView={isSmall ? {} : { opacity: 1 }}
+            transition={isSmall ? {} : { delay: 0.1, duration: 0.6 }}
+            viewport={isSmall ? {} : { once: true }}
+          >
+            Search by project, tool, stack, or domain.
+          </motion.p>
         </div>
 
-        <div className="project-console">
+        <motion.div
+          className="project-console"
+          initial={isSmall ? { opacity: 1 } : { opacity: 0, y: 24 }}
+          whileInView={isSmall ? {} : { opacity: 1, y: 0 }}
+          transition={isSmall ? {} : { duration: 0.65 }}
+          viewport={isSmall ? {} : { once: true }}
+        >
           <div className="project-search">
             <label htmlFor="project-search-input">
               <i className="fa-solid fa-magnifying-glass" />
@@ -176,7 +92,7 @@ export default function Projects() {
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search projects: FPGA, ROS 2, Python, ASIC..."
+                placeholder="Search projects..."
               />
             </label>
 
@@ -195,6 +111,7 @@ export default function Projects() {
                   className={`project-tab ${
                     effectiveActiveId === project.id ? "active" : ""
                   }`}
+                  data-projectid={project.id}
                   onClick={() => setActiveId(project.id)}
                   type="button"
                 >
@@ -225,10 +142,6 @@ export default function Projects() {
                       <p>{activeProject.type}</p>
                       <h3>{activeProject.title}</h3>
                     </div>
-
-                    <span className="project-status">
-                      {activeProject.status}
-                    </span>
                   </div>
 
                   <p className="project-description">
@@ -243,7 +156,12 @@ export default function Projects() {
 
                   <div className="project-actions">
                     {activeProject.live && (
-                      <a href={activeProject.live} className="btn btn-sky">
+                      <a
+                        href={activeProject.live}
+                        className="btn btn-sky project-live-link"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         Launch Interface
                       </a>
                     )}
@@ -267,7 +185,7 @@ export default function Projects() {
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
