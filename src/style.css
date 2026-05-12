@@ -277,6 +277,9 @@ hr {
 .about-copy h2 span {
   color: var(--orange, #ff922b);
 }
+.about-copy h3 span {
+  color: var(--orange, #ff922b);
+}
 
 .about-text {
   max-width: 68ch;
@@ -462,6 +465,7 @@ hr {
   inset: 0;
   z-index: 0;
   background:
+    var(--about-section-bg) center/cover no-repeat,
     radial-gradient(
       circle at 20% 15%,
       rgba(255, 146, 43, 0.22),
@@ -1468,8 +1472,7 @@ footer {
 
 @media (max-width: 768px) {
   /* Disable all framer-motion animations on small screens */
-  [class*="framer"],
-  .app-content * {
+  [class*="framer"] {
     animation-duration: 0s !important;
     transition-duration: 0s !important;
   }
@@ -1680,7 +1683,7 @@ footer {
 .about-panel-overlay {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   background:
     linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.78)),
     linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.22));
@@ -1688,13 +1691,27 @@ footer {
 
 .about-panel-main {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   flex: 1;
   min-height: 0;
   display: flex;
   align-items: flex-end;
   padding: 1.35rem;
   overflow: hidden;
+}
+
+/* Background image layer (from inline CSS variable) */
+.about-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--about-bg-url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .about-panel-card {
@@ -1787,5 +1804,179 @@ footer {
   .focus-list {
     max-height: 250px;
     padding: 0 1rem 1rem;
+  }
+}
+
+/* Unified mobile reset for consistent small-screen UX */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
+  }
+
+  .hero-content,
+  .about-section,
+  .projects-section,
+  .experience-section {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  .hero-content .row,
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    display: grid;
+    gap: 1rem !important;
+  }
+
+  .hero-content h1,
+  .about-copy h2,
+  .projects-header h2,
+  .experience-header h2 {
+    font-size: clamp(1.9rem, 6.5vw, 2.9rem) !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero-content .lead,
+  .about-text,
+  .projects-header p,
+  .experience-summary {
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .btn,
+  .focus-chip,
+  .project-tab,
+  .project-search button,
+  .nav-link,
+  .navbar-toggler {
+    min-height: 48px !important;
+    padding: 0.7rem 1rem !important;
+  }
+
+  .project-console {
+    height: auto !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto auto !important;
+    grid-template-areas:
+      "search"
+      "selector"
+      "display" !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+  }
+
+  .project-selector {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    gap: 0.8rem !important;
+    padding: 0.9rem !important;
+  }
+
+  .project-display,
+  .project-card-large {
+    min-height: 0 !important;
+  }
+
+  .about-panel {
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .about-panel-main,
+  .about-panel-card {
+    max-height: none !important;
+  }
+
+  .focus-list {
+    max-height: none !important;
+    overflow-y: visible !important;
+  }
+
+  .experience-card-top {
+    align-items: flex-start !important;
+    flex-wrap: wrap;
+  }
+
+  .experience-card-top > span {
+    display: none !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .hero-content,
+  .about-section,
+  .projects-section,
+  .experience-section {
+    padding-top: 2.8rem !important;
+    padding-bottom: 2.8rem !important;
+  }
+
+  .hero-content h1,
+  .about-copy h2,
+  .projects-header h2,
+  .experience-header h2 {
+    font-size: clamp(1.6rem, 7vw, 2.3rem) !important;
+  }
+
+  .hero-content .lead,
+  .about-text,
+  .projects-header p,
+  .experience-summary {
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .btn,
+  .focus-chip,
+  .project-tab,
+  .project-search button,
+  .nav-link,
+  .navbar-toggler {
+    min-height: 46px !important;
+    font-size: 0.9rem !important;
+    padding: 0.65rem 0.95rem !important;
+  }
+
+  .project-tab {
+    min-width: 170px !important;
+  }
+
+  .project-actions {
+    flex-direction: column !important;
+    gap: 0.6rem !important;
+  }
+}
+
+/* Keep Experience tag chips exactly aligned with Projects chips */
+.project-stack span,
+.experience-courses span,
+.experience-skills span {
+  font-size: 0.9rem !important;
+  padding: 0.55rem 0.8rem !important;
+}
+
+@media (max-width: 768px) {
+  .project-stack span,
+  .experience-courses span,
+  .experience-skills span {
+    font-size: 0.9rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-stack span,
+  .experience-courses span,
+  .experience-skills span {
+    font-size: 0.82rem !important;
+    padding: 0.45rem 0.65rem !important;
   }
 }

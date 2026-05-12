@@ -87,26 +87,6 @@ export default function Hero() {
               {...buttonsAnimation}
             >
               <motion.a
-                href="https://github.com/Alison0704"
-                className="btn btn-outline-sky"
-                target="_blank"
-                rel="noreferrer"
-                {...hoverScale}
-              >
-                <i className="fa-brands fa-github" />
-                GitHub
-              </motion.a>
-              <motion.a
-                href="https://www.linkedin.com/in/alison-emilien/"
-                className="btn btn-outline-sky"
-                target="_blank"
-                rel="noreferrer"
-                {...hoverScale}
-              >
-                <i className="fa-brands fa-linkedin" />
-                LinkedIn
-              </motion.a>
-              <motion.a
                 href="/resume/Alison_Emilien_Resume_Hardware.pdf"
                 className="btn btn-outline-sky"
                 target="_blank"

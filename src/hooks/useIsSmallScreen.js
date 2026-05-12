@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 
 export function useIsSmallScreen(breakpoint = 768) {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const getInitial = () => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < breakpoint;
+  };
+
+  const [isSmallScreen, setIsSmallScreen] = useState(getInitial);
 
   useEffect(() => {
     const checkSize = () => {
