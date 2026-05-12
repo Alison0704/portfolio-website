@@ -1980,3 +1980,68 @@ footer {
     padding: 0.45rem 0.65rem !important;
   }
 }
+
+.project-interface-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(12px);
+}
+
+.project-interface-modal {
+  width: min(1200px, 96vw);
+  max-height: 92vh;
+  overflow: hidden;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(10, 22, 39, 0.96);
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.55);
+}
+
+.project-interface-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 0;
+}
+
+.project-interface-top h3 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  color: var(--text-main, #f7f9fc);
+}
+
+.project-interface-top button {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text-main, #f7f9fc);
+  cursor: pointer;
+}
+
+.project-interface-body {
+  max-height: calc(92vh - 100px);
+  overflow-y: auto;
+  padding: 1.25rem;
+}
+
+.project-interface-body .characters-section {
+  padding: 0;
+}
+
+.project-interface-body .characters-header {
+  display: none;
+}
+
+.project-interface-body .character-console {
+  height: min(720px, 72vh);
+}
