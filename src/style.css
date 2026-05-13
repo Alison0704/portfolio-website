@@ -659,7 +659,13 @@ hr {
   display: flex;
   align-items: center;
   gap: 1rem;
+  justify-content: center;
   margin-bottom: 1.6rem;
+  text-align: center;
+}
+
+.project-card-top > div {
+  width: 100%;
 }
 
 .project-icon {
@@ -2003,11 +2009,16 @@ footer {
 }
 
 .project-interface-top {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
-  gap: 1rem;
   padding: 1.25rem 1.25rem 0;
+}
+
+.project-interface-top > div {
+  width: 100%;
+  text-align: center;
 }
 
 .project-interface-top h3 {
@@ -2019,6 +2030,9 @@ footer {
 }
 
 .project-interface-top button {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
   width: 44px;
   height: 44px;
   border-radius: 14px;

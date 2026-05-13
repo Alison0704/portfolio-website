@@ -4,36 +4,65 @@ import "./characterStyle.css";
 
 const characters = [
   {
-    id: "sol",
-    name: "Sol",
-    title: "Prototype Guardian",
+    id: "alister",
+    name: "Alister",
+    title: "The Hardware Engineer",
     avatar:
       "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?auto=format&fit=crop&w=800&q=80",
-    species: "Android",
+    species: "Human",
     role: "Main Character",
-    pronouns: "they/them",
-    status: "Active",
-    color: "#ff922b",
+    pronouns: "he/him",
+    status: "In Progress",
+    color: "#3134ee",
     summary:
-      "A calm machine built to guide lost travelers through abandoned stations.",
+      "A goofy and optimistic hardware engineer who loves tinkering with gadgets and building quirky inventions. He randomly gives tech gifts to his girlfriend Annael.",
     notes:
-      "Designed around soft robotics, old hardware, and quiet emotional intelligence.",
+      "He had an accident causing him to lose his arms...now he has mechanical arms that can transform into various tools and gadgets.",
   },
   {
-    id: "luna",
-    name: "Luna",
-    title: "Archive Witch",
+    id: "annael",
+    name: "Annael",
+    title: "The HR Specialist",
     avatar:
       "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
     species: "Human",
     role: "Main Character",
     pronouns: "she/her",
-    status: "Active",
-    color: "#8ec5ff",
+    status: "In Progress",
+    color: "#fea707",
     summary:
-      "A quiet archivist who keeps records of forgotten machines, strange maps, and old promises.",
+      "A bubbly and empathetic HR specialist who helps Alister navigate social interactions and just being a good girlfriend.",
     notes:
-      "Her design mixes soft fantasy silhouettes with technical accessories and handwritten notes.",
+      "Her design is slightly on a chubby side with a personality of a golden retriever.",
+  },
+  {
+    id: "chloe",
+    name: "Chloe",
+    title: "The Software Developer",
+    avatar:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    species: "Human",
+    role: "Main Character",
+    pronouns: "she/her",
+    status: "In Progress",
+    color: "#8b07fe",
+    summary:
+      "A stone-faced and sarcastic software developer who is Alister's adopted daughter. She has a love-hate relationship with Alister but deep down cares for him a lot. She's on a revenge quest to see who killed her parents not knowing she's been living in the same roof as the killer.",
+    notes: "If it's not a hoodie, it's going to be a black t-shirt.",
+  },
+  {
+    id: "arthur",
+    name: "Arthur",
+    title: "The Artist",
+    avatar:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    species: "Human",
+    role: "Main Character",
+    pronouns: "he/him",
+    status: "In Progress",
+    color: "#860000",
+    summary: "In Progress",
+    notes: "Constantly surrounded by dark academia aesthetics.",
   },
 ];
 
@@ -84,7 +113,7 @@ export default function CharacterVault() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <p className="section-kicker">Character Vault</p>
+          <p className="section-kicker">Character Concepts</p>
           <h2>Original Characters</h2>
           <p>
             A Toyhouse-inspired character archive for browsing profiles,
@@ -94,6 +123,9 @@ export default function CharacterVault() {
 
         <motion.div
           className="character-console"
+          style={{
+            "--character-accent": activeCharacter?.color || "#ff922b",
+          }}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65 }}
@@ -121,17 +153,11 @@ export default function CharacterVault() {
                   className={`character-list-item ${
                     activeCharacter?.id === character.id ? "active" : ""
                   }`}
+                  style={{ "--character-accent": character.color }}
                   onClick={() => setActiveId(character.id)}
                 >
-                  <div
-                    className="character-mini-avatar"
-                    style={{ borderColor: character.color }}
-                  >
-                    {character.avatar ? (
-                      <img src={character.avatar} alt={character.name} />
-                    ) : (
-                      <i className="fa-solid fa-user-astronaut" />
-                    )}
+                  <div className="character-mini-avatar">
+                    <i className="fa-solid fa-user" aria-hidden="true" />
                   </div>
 
                   <span>
@@ -153,24 +179,15 @@ export default function CharacterVault() {
                 <motion.article
                   key={activeCharacter.id}
                   className="character-profile"
+                  style={{ "--character-accent": activeCharacter.color }}
                   initial={{ opacity: 0, y: 16, scale: 0.98 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -16, scale: 0.98 }}
                   transition={{ duration: 0.28 }}
                 >
                   <div className="character-hero">
-                    <div
-                      className="character-avatar"
-                      style={{ borderColor: activeCharacter.color }}
-                    >
-                      {activeCharacter.avatar ? (
-                        <img
-                          src={activeCharacter.avatar}
-                          alt={activeCharacter.name}
-                        />
-                      ) : (
-                        <i className="fa-solid fa-user-astronaut" />
-                      )}
+                    <div className="character-avatar">
+                      <i className="fa-solid fa-user" aria-hidden="true" />
                     </div>
 
                     <div className="character-title-block">
