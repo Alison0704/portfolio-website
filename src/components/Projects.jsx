@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
 import { useIsSmallScreen } from "../hooks/useIsSmallScreen";
 import CharacterVault from "./Characters/CharacterVault";
+import OpenLaneAgentLab from "./OpenLaneAgentLab";
 
 const projects = [
   {
@@ -23,6 +24,23 @@ const projects = [
       "A Toyhouse-like character archive for storing original characters, references, tags, lore, and design notes.",
     stack: ["React", "Framer Motion", "LocalStorage", "CSS"],
     liveComponent: CharacterVault,
+    certificatePdf: "",
+  },
+  {
+    id: "openlane-agent",
+    title: "AI-Assisted OpenLane Lab",
+    type: "ASIC / EDA Automation",
+    description:
+      "A browser-accessible assistant for running fixed RTL demo designs through cocotb verification and OpenLane Docker, then summarizing logs, timing, DRC/LVS, and flow results.",
+    stack: [
+      "React",
+      "FastAPI",
+      "OpenLane",
+      "Docker",
+      "cocotb",
+      "Cloudflare Tunnel",
+    ],
+    liveComponent: OpenLaneAgentLab,
     certificatePdf: "",
   },
 ];
