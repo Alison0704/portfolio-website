@@ -77,9 +77,16 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p className="lead mt-3" {...leadAnimation}>
-              BASc Electrical Engineering and BSc Computing Technology Graduate
-              Student focused on ASIC/FPGA verification, RTL design, and
-              hardware and software systems.
+              <a
+                href="https://catalogue.uottawa.ca/en/undergrad/basc-electrical-engineering-bsc-computing-technology/#programrequirementstext"
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "underline", cursor: "pointer" }}
+              >
+                BASc Electrical Engineering and BSc Computing Technology
+              </a>{" "}
+              graduate student from University of Ottawa, focused on ASIC
+              design, FPGA verification, robotic systems, and machine learning.
             </motion.p>
 
             <motion.div

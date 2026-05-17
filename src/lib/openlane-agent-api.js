@@ -22,6 +22,13 @@ async function request(path, options = {}) {
   return data;
 }
 
+function encodeWaveformPath(path) {
+  return path
+    .split("/")
+    .map((part) => encodeURIComponent(part))
+    .join("/");
+}
+
 export const openlaneAgentApi = {
   health: () => request("/api/health"),
   designs: () => request("/api/designs"),
@@ -37,4 +44,7 @@ export const openlaneAgentApi = {
     }),
   getLog: (jobId, step) => request(`/api/jobs/${jobId}/logs/${step}`),
   getSummary: (jobId) => request(`/api/jobs/${jobId}/summary`),
+  getWaveforms: (jobId) => request(`/api/jobs/${jobId}/waveforms`),
+  getWaveform: (jobId, path) =>
+    request(`/api/jobs/${jobId}/waveforms/${encodeWaveformPath(path)}`),
 };
