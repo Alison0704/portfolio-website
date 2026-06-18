@@ -9,9 +9,18 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
+import PencilBoilDefs from "./components/PencilBoilDefs";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const [boil, setBoil] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return localStorage.getItem("pencil-boil") !== "off";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("pencil-boil", boil ? "on" : "off");
+  }, [boil]);
 
   useEffect(() => {
     const loaderTimer = setTimeout(() => {
@@ -31,6 +40,8 @@ export default function App() {
 
   return (
     <>
+      <PencilBoilDefs />
+
       <video className="background-video" autoPlay muted loop playsInline>
         <source src="/Background.mp4" type="video/mp4" />
       </video>
@@ -38,7 +49,7 @@ export default function App() {
       <div className="background-overlay"></div>
 
       <motion.div
-        className="app-content"
+        className={`app-content ${boil ? "boil-on" : "boil-off"}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.45 }}
@@ -46,6 +57,24 @@ export default function App() {
         <AnimatePresence mode="wait">
           {loading && <Loader key="loader" />}
         </AnimatePresence>
+
+        <button
+          type="button"
+          className="boil-toggle"
+          onClick={() => setBoil((value) => !value)}
+          aria-pressed={boil}
+          title={
+            boil
+              ? "Turn off the sketchbook boil effect"
+              : "Turn on the sketchbook boil effect"
+          }
+        >
+          <i
+            className={`fa-solid ${boil ? "fa-pen-nib" : "fa-pen"}`}
+            aria-hidden="true"
+          />
+          <span>Boil: {boil ? "On" : "Off"}</span>
+        </button>
 
         <Navbar />
 

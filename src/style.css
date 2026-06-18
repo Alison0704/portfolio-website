@@ -8,7 +8,7 @@
   --text-muted: #a8bad0;
   --border-blue: rgba(59, 167, 255, 0.28);
   --glow-blue: rgba(59, 167, 255, 0.24);
-  --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sans: "Fredoka", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 }
 
@@ -722,6 +722,197 @@ hr {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
+}
+
+/* ============================================================
+   Sketchbook boiling pencil shading
+   ============================================================ */
+
+/* Keep the filter SVG out of layout/flow. */
+.pencil-boil-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Floating on/off toggle for the boiling pencil effect. */
+.boil-toggle {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-main);
+  background: rgba(11, 31, 54, 0.82);
+  border: 1px solid var(--border-blue);
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.boil-toggle:hover {
+  transform: translateY(-2px);
+  border-color: var(--sky-blue);
+  box-shadow: 0 8px 26px var(--glow-blue);
+}
+
+.boil-toggle i {
+  color: var(--sky-blue);
+}
+
+/* Dim the button when the effect is off. */
+.boil-off .boil-toggle {
+  color: var(--text-muted);
+  border-color: rgba(168, 186, 208, 0.28);
+}
+
+.boil-off .boil-toggle i {
+  color: var(--text-muted);
+}
+
+/* Cycle through the three turbulence filters so the hand-drawn
+   edges "boil" frame to frame. filter: url() is not interpolatable,
+   so each keyframe value is held then snaps — giving discrete frames. */
+@keyframes pencil-boil {
+  0%,
+  100% {
+    filter: url(#pencil-boil-0);
+  }
+  33% {
+    filter: url(#pencil-boil-1);
+  }
+  66% {
+    filter: url(#pencil-boil-2);
+  }
+}
+
+/* Boil only the project details card (the search bar and tab list stay
+   steady). Boiled as a single unit so its contents shimmer together. The
+   whole effect is gated behind .boil-on so the floating toggle can switch
+   it off. */
+.boil-on .projects-section.sketchbook .project-card-large {
+  animation: pencil-boil 0.42s linear infinite;
+}
+
+/* ---- Hero section: boil the heading and intro copy. ---- */
+.boil-on #home .hero-content .section-kicker,
+.boil-on #home .hero-content h1,
+.boil-on #home .hero-content .lead {
+  animation: pencil-boil 0.42s linear infinite;
+}
+
+.boil-on #home .hero-content h1 {
+  animation-delay: -0.14s;
+}
+.boil-on #home .hero-content .lead {
+  animation-delay: -0.28s;
+}
+
+/* Paper grain wash over the whole section (sits behind content). */
+.projects-section.sketchbook .projects-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Diagonal pencil hatching / shading on the active project card.
+   Lives inside the filtered element, so it boils along with the card. */
+.projects-section.sketchbook .project-card-large {
+  position: relative;
+}
+
+.projects-section.sketchbook .project-card-large::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      48deg,
+      rgba(255, 255, 255, 0.07) 0,
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      -42deg,
+      rgba(0, 0, 0, 0.08) 0,
+      rgba(0, 0, 0, 0.08) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.8;
+}
+
+/* ---- About section: boil the text boxes only — the copy column and the
+   text card inside the panel. The panel's image tile is left steady. ---- */
+.boil-on .about-section.sketchbook .about-copy,
+.boil-on .about-section.sketchbook .about-panel-card {
+  position: relative;
+  animation: pencil-boil 0.42s linear infinite;
+}
+
+.boil-on .about-section.sketchbook .about-panel-card {
+  animation-delay: -0.21s;
+}
+
+/* ---- Experience section: boil each card as a single unit. ---- */
+.boil-on .experience-section.sketchbook .experience-card {
+  position: relative;
+  animation: pencil-boil 0.42s linear infinite;
+}
+
+.boil-on .experience-section.sketchbook .experience-card:nth-child(2n) {
+  animation-delay: -0.21s;
+}
+
+/* Honour reduced-motion: keep the sketchy look, drop the boil. */
+@media (prefers-reduced-motion: reduce) {
+  .boil-on #home .hero-content .section-kicker,
+  .boil-on #home .hero-content h1,
+  .boil-on #home .hero-content .lead,
+  .boil-on .projects-section.sketchbook .project-card-large,
+  .boil-on .about-section.sketchbook .about-copy,
+  .boil-on .about-section.sketchbook .about-panel-card,
+  .boil-on .experience-section.sketchbook .experience-card {
+    animation: none;
+    filter: url(#pencil-boil-0);
+  }
+}
+
+/* Drop the continuous boil on small screens to keep them smooth; the static
+   rough displacement still reads as hand-drawn. */
+@media (max-width: 768px) {
+  .boil-on #home .hero-content .section-kicker,
+  .boil-on #home .hero-content h1,
+  .boil-on #home .hero-content .lead,
+  .boil-on .projects-section.sketchbook .project-card-large,
+  .boil-on .about-section.sketchbook .about-copy,
+  .boil-on .about-section.sketchbook .about-panel-card,
+  .boil-on .experience-section.sketchbook .experience-card {
+    animation: none;
+    filter: url(#pencil-boil-0);
+  }
 }
 
 .project-empty-small {

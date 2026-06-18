@@ -54,7 +54,7 @@ export default function Experience() {
   const isSmall = useIsSmallScreen();
 
   return (
-    <section id="experience" className="experience-section">
+    <section id="experience" className="experience-section sketchbook">
       <div className="container experience-content">
         <motion.div
           className="experience-header"

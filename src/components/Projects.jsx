@@ -14,7 +14,6 @@ const projects = [
     stack: ["ROS 2", "Python", "OpenCV", "ESP32"],
     github: "https://github.com/Alison0704/Capstone-JimE",
     live: "https://alison0704.github.io/Capstone-JimE-Interface/",
-    certificatePdf: "",
   },
   {
     id: "character-vault",
@@ -24,7 +23,6 @@ const projects = [
       "A Toyhouse-like character archive for storing original characters, references, tags, lore, and design notes.",
     stack: ["React", "Framer Motion", "LocalStorage", "CSS"],
     liveComponent: CharacterVault,
-    certificatePdf: "",
   },
   {
     id: "openlane-agent",
@@ -41,7 +39,6 @@ const projects = [
       "Cloudflare Tunnel",
     ],
     liveComponent: OpenLaneAgentLab,
-    certificatePdf: "",
   },
 ];
 
@@ -67,7 +64,6 @@ export default function Projects() {
         project.description,
         project.status,
         project.liveComponent ? "portable interface live component" : "",
-        project.certificatePdf ? "certificate pdf" : "",
         ...project.stack,
       ]
         .join(" ")
@@ -90,7 +86,7 @@ export default function Projects() {
   );
 
   return (
-    <section id="projects" className="projects-section">
+    <section id="projects" className="projects-section sketchbook">
       <div className="projects-bg" />
 
       <div className="container projects-content">
@@ -110,7 +106,7 @@ export default function Projects() {
             transition={isSmall ? {} : { delay: 0.1, duration: 0.6 }}
             viewport={isSmall ? {} : { once: true }}
           >
-            Search by project, tool, stack, or domain.
+            Use the search bar to filter projects by keywords.
           </motion.p>
         </div>
 
@@ -211,17 +207,6 @@ export default function Projects() {
                         rel="noreferrer"
                       >
                         Launch Interface
-                      </a>
-                    ) : null}
-
-                    {activeProject.certificatePdf ? (
-                      <a
-                        href={activeProject.certificatePdf}
-                        className="btn btn-outline-sky"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        View Certificate
                       </a>
                     ) : null}
 

@@ -72,7 +72,7 @@ export default function Hero() {
               Online Portfolio
             </motion.p>
 
-            <motion.h1 className="display-3 fw-bold" {...titleAnimation}>
+            <motion.h1 className="display-3 fw-semibold" {...titleAnimation}>
               Hi, I&apos;m <span className="text-sky">AliEmi</span>
             </motion.h1>
 

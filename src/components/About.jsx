@@ -52,7 +52,7 @@ export default function About() {
   const active = focusAreas[activeIndex];
 
   return (
-    <section id="about" className="about-section">
+    <section id="about" className="about-section sketchbook">
       <div className="about-bg" />
       <div className="about-bg-glow" />
       <div className="container about-content">
