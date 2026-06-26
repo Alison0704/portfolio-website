@@ -8,8 +8,6 @@ export default function Experience() {
       organization: "University of Ottawa",
       period: "Jan 2024 – Apr 2026",
       icon: "fa-chalkboard-user",
-      summary:
-        "Supported technical learning in digital systems, FPGA design, logic circuits, and C programming.",
       courses: ["ITI 1500 · Digital Systems", "GNG 1106 · C Programming"],
       bullets: [
         "Supported students in digital systems, circuit behavior, logic design, and FPGA workflows using Quartus II and Altera tools.",
@@ -31,8 +29,6 @@ export default function Experience() {
       organization: "University of Ottawa",
       period: "May 2023 – Apr 2026",
       icon: "fa-table-list",
-      summary:
-        "Managed structured data, administrative workflows, and confidential pension-related records.",
       courses: [],
       bullets: [
         "Managed specialized administrative projects and data governance tasks for pension analysts.",
@@ -90,8 +86,6 @@ export default function Experience() {
 
                 <span>{experience.period}</span>
               </div>
-
-              <p className="experience-summary">{experience.summary}</p>
 
               {experience.courses.length > 0 && (
                 <div className="experience-courses">

@@ -1,6 +1,6 @@
 // Shared SVG filters that drive the "boiling pencil" sketchbook effect used
 // by the Projects, Experience, and About sections. Three turbulence seeds are
-// swapped on a CSS loop (see `pencil-boil` keyframes) to make drawn edges
+// swapped on a CSS loop (see "pencil-boil" keyframes) to make drawn edges
 // shimmer like hand-drawn animation. Rendered once at the page level so every
 // section can reference the filters by id.
 export default function PencilBoilDefs() {

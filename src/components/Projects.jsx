@@ -2,43 +2,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
 import { useIsSmallScreen } from "../hooks/useIsSmallScreen";
 import CharacterVault from "./Characters/CharacterVault";
-import OpenLaneAgentLab from "./OpenLaneAgentLab";
 
 const projects = [
   {
     id: "jime",
-    title: "Jim-E Hosting Robot",
-    type: "Robotics",
+    title: "Jim-E Robot",
     description:
       "An autonomous indoor hosting robot using ROS 2, Raspberry Pi, ESP32 control, vision, and path planning.",
-    stack: ["ROS 2", "Python", "OpenCV", "ESP32"],
+    stack: ["ROS2", "Python", "OpenCV", "ESP32", "Raspberry Pi"],
     github: "https://github.com/Alison0704/Capstone-JimE",
     live: "https://alison0704.github.io/Capstone-JimE-Interface/",
   },
   {
     id: "character-vault",
     title: "Character Concepts",
-    type: "Digital Art and Design",
     description:
       "A Toyhouse-like character archive for storing original characters, references, tags, lore, and design notes.",
     stack: ["React", "Framer Motion", "LocalStorage", "CSS"],
     liveComponent: CharacterVault,
-  },
-  {
-    id: "openlane-agent",
-    title: "AI-Assisted OpenLane Lab",
-    type: "ASIC / EDA Automation",
-    description:
-      "A browser-accessible assistant for running fixed RTL demo designs through cocotb verification and OpenLane Docker, then summarizing logs, timing, DRC/LVS, and flow results.",
-    stack: [
-      "React",
-      "FastAPI",
-      "OpenLane",
-      "Docker",
-      "cocotb",
-      "Cloudflare Tunnel",
-    ],
-    liveComponent: OpenLaneAgentLab,
   },
 ];
 
@@ -175,7 +156,6 @@ export default function Projects() {
                 >
                   <div className="project-card-top">
                     <div>
-                      <p>{activeProject.type}</p>
                       <h3>{activeProject.title}</h3>
                     </div>
                   </div>

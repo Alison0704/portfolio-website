@@ -68,10 +68,6 @@ export default function Hero() {
       <div className="container hero-content">
         <div className="row align-items-center justify-content-between g-5">
           <motion.div className="col-lg-7" {...containerAnimation}>
-            <motion.p className="section-kicker" {...kickerAnimation}>
-              Online Portfolio
-            </motion.p>
-
             <motion.h1 className="display-3 fw-semibold" {...titleAnimation}>
               Hi, I&apos;m <span className="text-sky">AliEmi</span>
             </motion.h1>
