@@ -81,6 +81,47 @@ const projects = [
     github: "https://github.com/Alison0704/rf-dsp-receiver-verification",
     live: "",
   },
+  {
+    id: "water-quality-analyzer",
+    title: "Automated Water Quality Analyzer",
+    description:
+      "An Arduino-based water monitoring system that measures temperature, pH, and total dissolved solids, applies filtering and threshold-based quality checks, and streams serial data to a real-time Node.js dashboard.",
+    stack: [
+      "Arduino",
+      "C++",
+      "Node.js",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "SerialPort",
+      "Socket.IO",
+      "UART",
+      "OneWire",
+      "DallasTemperature",
+      "Median Filtering",
+      "pH Sensing",
+      "TDS Sensing",
+      "Temperature Sensing",
+    ],
+    github: "https://github.com/Alison0704/ELG-4539-Projet-Analyseur-d-eau",
+    live: "",
+  },
+  {
+    id: "artfight-randomizer",
+    title: "ArtFight Character Randomizer",
+    description:
+      "A dependency-free web tool that redirects visitors to a randomly selected ArtFight character profile, with a Makefile workflow for creating organized drawing-attack folders from a Clip Studio Paint template.",
+    stack: [
+      "HTML",
+      "JavaScript",
+      "Make",
+      "Shell",
+      "GitHub Pages",
+      "Clip Studio Paint",
+    ],
+    github: "https://github.com/Alison0704/artfight-randomizer",
+    live: "",
+  },
 ];
 
 const projectListIcon = "fa-folder-open";
