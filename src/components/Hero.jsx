@@ -90,7 +90,7 @@ export default function Hero() {
               {...buttonsAnimation}
             >
               <motion.a
-                href="/resume/Alison_Emilien_Resume_Hardware.pdf"
+                href="/resume/Alison_Emilien_Resume.pdf"
                 className="btn btn-outline-sky"
                 target="_blank"
                 rel="noreferrer"
