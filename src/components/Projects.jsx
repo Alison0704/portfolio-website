@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
 import { useIsSmallScreen } from "../hooks/useIsSmallScreen";
-import CharacterVault from "./Characters/CharacterVault";
 
 const projects = [
   {
@@ -30,8 +29,8 @@ const projects = [
     title: "Character Concepts",
     description:
       "A collection of character concepts and designs [work in progress]",
-    stack: ["React", "Framer Motion", "LocalStorage", "CSS"],
-    liveComponent: CharacterVault,
+    stack: [],
+    live: "",
   },
   {
     id: "ai-5g-baseband-pi",

@@ -13,14 +13,6 @@ export default function Hero() {
         transition: { duration: 0.8 },
       };
 
-  const kickerAnimation = isSmall
-    ? { initial: { opacity: 1 } }
-    : {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        transition: { delay: 0.2, duration: 0.6 },
-      };
-
   const titleAnimation = isSmall
     ? { initial: { opacity: 1 } }
     : {
@@ -81,8 +73,7 @@ export default function Hero() {
               >
                 BASc Electrical Engineering and BSc Computing Technology
               </a>{" "}
-              graduate student from University of Ottawa, focused on ASIC
-              design, FPGA verification, robotic systems, and machine learning.
+              graduate student from University of Ottawa.
             </motion.p>
 
             <motion.div

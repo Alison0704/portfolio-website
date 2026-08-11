@@ -56,7 +56,6 @@ export default function Navbar() {
           href="#home"
           whileHover={isSmall ? {} : { x: 2 }}
         >
-          <img src="/Logo.png" alt="AliEmi logo" width="32" height="32" />
           <span>AliEmi Portfolio Website</span>
         </motion.a>
 
